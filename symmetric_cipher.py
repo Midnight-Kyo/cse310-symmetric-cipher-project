@@ -32,7 +32,9 @@ def expand_key(key):
 
 
 def box_indices(subkey):
-    reversed_key = int(BitVector(intVal=subkey, size=16).reverse())
+    bits = BitVector(intVal=subkey, size=16)
+    reversed_bits = bits.reverse()
+    reversed_key = int(reversed_bits)
     return subkey % 10, reversed_key % 10
 
 

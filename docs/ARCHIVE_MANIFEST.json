@@ -20,8 +20,8 @@
     },
     {
       "path": "docs/CODE_WALKTHROUGH.md",
-      "bytes": 6898,
-      "sha256": "242c868de86bce95de4b98cb8b1aa90a5d475de94eed4abceface3dabb9d82c4"
+      "bytes": 7087,
+      "sha256": "8aac0ca1752cc0744247ea1b0238880676499d8b94285122dcee7b1d704c7250"
     },
     {
       "path": "docs/DESIGN_DECISIONS.md",
@@ -101,7 +101,7 @@
     {
       "path": "results/results.json",
       "bytes": 4121,
-      "sha256": "b4f210a0e069ce85ad4ec6c89c0b9166010b03d9c161a7e8b49818edfa05929d"
+      "sha256": "4e1c4370f4456556cffbf4e421c43212eed4a17b2f2060d69aa236a7f4586604"
     },
     {
       "path": "saes.py",
@@ -115,13 +115,13 @@
     },
     {
       "path": "submission/Symmetric_Project_Files.zip",
-      "bytes": 145046,
-      "sha256": "ecaeafc65b198175254d1970ed6a2ed2baed34c7365148fdc78fc1a9fe4a1ed2"
+      "bytes": 145059,
+      "sha256": "46156cfefc1289191383e434326da0c7bbc45169b0ea52f121c845ea730f6897"
     },
     {
       "path": "symmetric_cipher.py",
-      "bytes": 3328,
-      "sha256": "182466c70f8a334cecaca046542a0e3c0d79d11fc0648e35d6da9a2df7a60b47"
+      "bytes": 3378,
+      "sha256": "2a7524f16162e74e03e536795ada4fddc59d21bb28b28f9b500dfc94ff2a61e5"
     },
     {
       "path": "tools/verify_project.py",

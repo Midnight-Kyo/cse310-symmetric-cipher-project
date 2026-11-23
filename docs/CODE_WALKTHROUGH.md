@@ -51,11 +51,13 @@ For input `2D55`, call 1 gives `BCE9, A34A`. Call 2 uses `A34A` and gives `2E64,
 
 ```python
 def box_indices(subkey):
-    reversed_key = int(BitVector(intVal=subkey, size=16).reverse())
+    bits = BitVector(intVal=subkey, size=16)
+    reversed_bits = bits.reverse()
+    reversed_key = int(reversed_bits)
     return subkey % 10, reversed_key % 10
 ```
 
-BitVector reverses the sixteen bits, including leading zeros. Modulo 10 selects an index from 0–9. The normal subkey selects the left table; its reversed bits select the right table.
+The three assignments make each operation visible: create a 16-bit BitVector object, reverse its bit order into a new object, then convert that result into an integer. The size includes leading zeros. Modulo 10 selects an index from 0–9. The normal subkey selects the left table; its reversed bits select the right table.
 
 ## Substitution
 
