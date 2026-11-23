@@ -1,10 +1,10 @@
 # Current project status
 
-Repository prepared on 23 November 2026. The implementation and report preserve the final version prepared on 17 November 2026; publication does not change the algorithm or its results.
+Repository prepared on 23 November 2026. The project was first prepared on 17 November. On 23 November, numeric ID input replaced the previous text representation, and the report, slides and results were updated together. The four-round block algorithm and key schedule stay the same.
 
 ## Completed
 
-- A four-round encryption implementation, its inverse and CBC handling for both seven-digit student IDs.
+- A four-round encryption implementation, its inverse and CBC handling for both numeric student IDs, using two blocks each.
 - Ten fixed 8-bit S-boxes and all ten inverse tables.
 - Two calls to the downloaded S-AES key-expansion module for four round keys.
 - A six-page Word report and a matching PDF with the flowchart, pseudocode, full four-round worked example, ID results and one-bit tests.
@@ -14,7 +14,7 @@ Repository prepared on 23 November 2026. The implementation and report preserve 
 
 ## Verification
 
-The verification tool checks all ten S-boxes and 2,560 inverse entries; all four permutation patterns; 512 deterministic plaintext/key pairs against an independent reference implementation; encryption/decryption recovery; all 65,536 plaintext outputs under the example key for uniqueness; both complete ID results; and both one-bit tests.
+The verification tool checks all ten S-boxes and 2,560 inverse entries; all four permutation patterns; 512 deterministic plaintext/key pairs against an independent reference implementation; encryption/decryption recovery and reconstruction of the complete numeric IDs; all 65,536 plaintext outputs under the example key for uniqueness; both complete ID results; and both one-bit tests.
 
 It also checks the recorded results, the project-source checksum, the unchanged third-party source and the submission archive. The GitHub Actions workflow runs these checks on Python 3.12. Its latest run is the public record of the server-side result.
 
@@ -26,7 +26,7 @@ The PowerPoint archive has nine slides, six native tables and speaker notes. It 
 - The handout does not fully define how to adapt standard AES key expansion to a 16-bit master key or disambiguate the direction of its permutation tables. Our conventions are documented.
 - The nine-slide presentation still needs to be delivered by both students. Speaking notes are preparation material, not evidence of delivery.
 - No Blackboard submission, submission receipt or professor grading has been recorded.
-- The original `Project+Rurbric.docx` was available for the earlier review but could not be found at publication time. The requirements file is a structured transcription of its contents. Its example S-box images were retained from the original extraction.
+- The original `Project+Rurbric.docx` was unavailable at initial publication and was supplied again on 23 November. The requirements file is a structured transcription of its contents. Its example S-box images were retained from the original extraction.
 
 ## Submission files versus repository context
 

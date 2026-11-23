@@ -1,6 +1,6 @@
 {
   "key": 11605,
-  "plaintext": 12592,
+  "plaintext": 16,
   "keys": [
     48361,
     41802,
@@ -56,16 +56,16 @@
       "reverse": 38717,
       "a": 1,
       "b": 7,
-      "input": 12592,
-      "left_input": 49,
-      "right_input": 48,
-      "left_output": 99,
-      "right_output": 9,
-      "substituted": 25353,
-      "permuted": 21826,
-      "output": 59819,
-      "sub_bits": "0110001100001001",
-      "perm_bits": "0101010101000010"
+      "input": 16,
+      "left_input": 0,
+      "right_input": 16,
+      "left_output": 157,
+      "right_output": 212,
+      "substituted": 40404,
+      "permuted": 60088,
+      "output": 22097,
+      "sub_bits": "1001110111010100",
+      "perm_bits": "1110101010111000"
     },
     {
       "round": 2,
@@ -73,16 +73,16 @@
       "reverse": 21189,
       "a": 2,
       "b": 9,
-      "input": 59819,
-      "left_input": 233,
-      "right_input": 171,
-      "left_output": 251,
-      "right_output": 109,
-      "substituted": 64365,
-      "permuted": 32725,
-      "output": 56479,
-      "sub_bits": "1111101101101101",
-      "perm_bits": "0111111111010101"
+      "input": 22097,
+      "left_input": 86,
+      "right_input": 81,
+      "left_output": 81,
+      "right_output": 75,
+      "substituted": 20811,
+      "permuted": 16851,
+      "output": 58009,
+      "sub_bits": "0101000101001011",
+      "perm_bits": "0100000111010011"
     },
     {
       "round": 3,
@@ -90,16 +90,16 @@
       "reverse": 9844,
       "a": 6,
       "b": 4,
-      "input": 56479,
-      "left_input": 220,
-      "right_input": 159,
-      "left_output": 49,
-      "right_output": 93,
-      "substituted": 12637,
-      "permuted": 33887,
-      "output": 43579,
-      "sub_bits": "0011000101011101",
-      "perm_bits": "1000010001011111"
+      "input": 58009,
+      "left_input": 226,
+      "right_input": 153,
+      "left_output": 138,
+      "right_output": 69,
+      "substituted": 35397,
+      "permuted": 24843,
+      "output": 20335,
+      "sub_bits": "1000101001000101",
+      "perm_bits": "0110000100001011"
     },
     {
       "round": 4,
@@ -107,125 +107,93 @@
       "reverse": 17763,
       "a": 0,
       "b": 3,
-      "input": 43579,
-      "left_input": 170,
-      "right_input": 59,
-      "left_output": 17,
-      "right_output": 230,
-      "substituted": 4582,
-      "permuted": 26504,
-      "output": 41258,
-      "sub_bits": "0001000111100110",
-      "perm_bits": "0110011110001000"
+      "input": 20335,
+      "left_input": 79,
+      "right_input": 111,
+      "left_output": 49,
+      "right_output": 115,
+      "substituted": 12659,
+      "permuted": 52876,
+      "output": 2094,
+      "sub_bits": "0011000101110011",
+      "perm_bits": "1100111010001100"
     }
   ],
   "ids": [
     {
       "name": "Wahab Yaseen Dawod",
-      "id": "1098271",
+      "id": 1098271,
       "blocks": [
         {
           "block": 1,
-          "plaintext": 12592,
+          "plaintext": 16,
           "previous": 0,
-          "input": 12592,
-          "ciphertext": 41258
+          "input": 16,
+          "ciphertext": 2094
         },
         {
           "block": 2,
-          "plaintext": 14648,
-          "previous": 41258,
-          "input": 38930,
-          "ciphertext": 33056
-        },
-        {
-          "block": 3,
-          "plaintext": 12855,
-          "previous": 33056,
-          "input": 45847,
-          "ciphertext": 21695
-        },
-        {
-          "block": 4,
-          "plaintext": 12545,
-          "previous": 21695,
-          "input": 26046,
-          "ciphertext": 5905
+          "plaintext": 49695,
+          "previous": 2094,
+          "input": 51761,
+          "ciphertext": 16825
         }
       ],
       "ciphertext": [
-        41258,
-        33056,
-        21695,
-        5905
+        2094,
+        16825
       ]
     },
     {
       "name": "Faisal Saud Al Maamari",
-      "id": "1075075",
+      "id": 1075075,
       "blocks": [
         {
           "block": 1,
-          "plaintext": 12592,
+          "plaintext": 16,
           "previous": 0,
-          "input": 12592,
-          "ciphertext": 41258
+          "input": 16,
+          "ciphertext": 2094
         },
         {
           "block": 2,
-          "plaintext": 14133,
-          "previous": 41258,
-          "input": 38431,
-          "ciphertext": 16868
-        },
-        {
-          "block": 3,
-          "plaintext": 12343,
-          "previous": 16868,
-          "input": 29139,
-          "ciphertext": 28126
-        },
-        {
-          "block": 4,
-          "plaintext": 13569,
-          "previous": 28126,
-          "input": 22751,
-          "ciphertext": 44037
+          "plaintext": 26499,
+          "previous": 2094,
+          "input": 28589,
+          "ciphertext": 3508
         }
       ],
       "ciphertext": [
-        41258,
-        16868,
-        28126,
-        44037
+        2094,
+        3508
       ]
     }
   ],
   "tests": [
     {
       "label": "Original",
-      "plaintext": 12592,
+      "plaintext": 16,
       "key": 11605,
-      "ciphertext": 41258,
+      "ciphertext": 2094,
       "difference": 0,
       "changed": 0,
       "percent": 0.0
     },
     {
       "label": "Plaintext bit 0",
-      "plaintext": 12593,
+      "plaintext": 17,
       "key": 11605,
-      "ciphertext": 35228,
-      "difference": 10422,
+      "ciphertext": 13134,
+      "difference": 15200,
       "changed": 7,
       "percent": 43.75
     },
     {
       "label": "Key bit 0",
-      "plaintext": 12592,
+      "plaintext": 16,
       "key": 11604,
-      "ciphertext": 61687,
-      "difference": 20957,
+      "ciphertext": 57904,
+      "difference": 59934,
       "changed": 9,
       "percent": 56.25
     }
@@ -240,5 +208,5 @@
     "sboxes": 10,
     "inverse_entries": 2560
   },
-  "source_sha256": "cf4d44ef670373cfe6a953f6921955e2c2c4d9b01cac68fc44ac3184ab488745"
+  "source_sha256": "182466c70f8a334cecaca046542a0e3c0d79d11fc0648e35d6da9a2df7a60b47"
 }

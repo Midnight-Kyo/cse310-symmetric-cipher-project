@@ -2,7 +2,7 @@
 
 This guide explains the current [project program](../symmetric_cipher.py). It implements a custom 16-bit cipher from the handout. The downloaded [saes.py](../saes.py) performs key expansion only. Its own encryption methods are not used by our cipher.
 
-One byte is eight bits. One project block is sixteen bits, or two bytes. `0x` marks a hexadecimal number; `0xa12a` and `A12A` represent the same value.
+One byte is eight bits. One project block is sixteen bits, or two bytes. `0x` marks a hexadecimal number; `0x82e` and `082E` represent the same value. Leading zeros fill the four-digit block display.
 
 ## Imports
 
@@ -66,7 +66,7 @@ def substitute(block, boxes, left_index, right_index):
     return (left << 8) | right
 ```
 
-`block >> 8` gets the left byte. `block & 255` gets the right byte. Each byte is replaced using its selected S-box, then the final line joins the replacement bytes. In the first round, `3130` splits into `31` and `30`; the selected tables give `63` and `09`, making `6309`.
+`block >> 8` gets the left byte. `block & 255` gets the right byte. Each byte is replaced using its selected S-box, then the final line joins the replacement bytes. In the first round, `0010` splits into `00` and `10`; S1 and S7 give `9D` and `D4`, making `9DD4`.
 
 ## Encrypting one block
 
@@ -108,35 +108,36 @@ The loop uses positions 3, 2, 1, 0, meaning rounds 4 back to 1. XOR the key agai
 
 ```python
 def encrypt_id(student_id, key, iv=0):
-    data = student_id.encode("ascii") + b"\x01"
+    """Encrypt a numeric student ID as two 16-bit blocks."""
+    data = student_id.to_bytes(4, "big")  # Keep the whole number; pad on the left.
     ciphertext = []
     previous = iv
-    for block in np.frombuffer(data, dtype=">u2"):
+    for block in np.frombuffer(data, dtype=">u2"):  # Read pairs of bytes.
         previous = encrypt_block(int(block) ^ previous, key)
         ciphertext.append(previous)
     return ciphertext
 ```
 
-This helper is specifically for the seven-digit IDs in this assignment. Encoding the digits as ASCII gives seven bytes. Adding the padding byte `01` gives eight bytes, or four blocks. That padding is a byte with value 1, rather than the text digit `1`.
+The input is the entire ID as an integer. `student_id.to_bytes(4, "big")` writes that number in four bytes, most significant byte first. Leading zero bits fill the 32-bit space. This is numeric formatting, with no ASCII conversion and no extra padding byte.
 
-For Wahab, the pairs are `10`, `98`, `27`, and `1` plus padding. Their hexadecimal values are `3130 3938 3237 3101`.
+For Wahab, `1098271` is hexadecimal `0010C21F`; the two blocks are `0010` and `C21F`. Faisal's `1075075` is `00106783`, giving `0010` and `6783`. We do not split the decimal digits into pairs.
 
-`ciphertext` stores the results. `previous` initially holds the demonstration IV, `0000`. NumPy's `>u2` format reads two-byte unsigned numbers with the first byte as the high byte.
+`ciphertext` stores the results. `previous` initially holds demonstration IV `0000`. NumPy's `>u2` reads pairs of bytes as 16-bit unsigned numbers, most significant byte first.
 
-The line calling `encrypt_block` XORs the current plaintext with the preceding ciphertext, encrypts that combined value, and remembers the new ciphertext for the next block. This is CBC chaining. The first block uses the IV instead of a previous ciphertext.
+Before the four rounds, XOR the current block with the preceding ciphertext. The first block uses the IV instead. Save each completed ciphertext for the next block. This is CBC chaining.
 
 ```text
-Block 1: 3130 XOR 0000 = 3130; encrypt to A12A.
-Block 2: 3938 XOR A12A = 9812; encrypt to 8120.
+Block 1: 0010 XOR 0000 = 0010; encrypt to 082E.
+Block 2: C21F XOR 082E = CA31; encrypt to 41B9.
 ```
 
-Each result is appended to the list. The returned list contains the four encrypted blocks.
+The returned list contains two encrypted blocks. Decrypting them and recombining the recovered numeric blocks gives the complete original ID.
 
 ## The demonstration section
 
 `if __name__ == "__main__":` runs the demonstration when this file is executed directly. Importing its functions does not automatically run the demo. This condition contributes nothing to encryption.
 
-The demo chooses key `2D55` and plaintext `3130` (ASCII `10`), prints the round keys, encrypts and decrypts the example, then encrypts both complete IDs. `hex()` only formats output.
+The demo chooses key `2D55` and plaintext `0010` (the first numeric ID block), prints the round keys, encrypts and decrypts the example, then encrypts both complete IDs. `hex()` only formats output.
 
 For the tests, `plaintext ^ 1` flips the plaintext's rightmost bit, while `key ^ 1` flips the key's rightmost bit. Each changed case is encrypted separately. The expression below counts differing output positions:
 

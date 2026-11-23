@@ -47,13 +47,13 @@ We subtract one to translate the handout's positions into Python's zero-based in
 
 ## Full student IDs and CBC
 
-Both required IDs have seven digits. Converting the decimal ID to one 16-bit integer would discard information or fail to fit it in one block. We retain the digits as ASCII bytes and add one padding byte `01`, giving eight bytes or four blocks.
+The IDs are numeric inputs: `1098271` and `1075075`. Each needs 21 bits, so it cannot fit in one 16-bit block. The built-in integer method `student_id.to_bytes(4, "big")` stores the complete number in four bytes, with leading zero bits to fill 32 bits. The left padding does not change its numeric value.
 
-`np.frombuffer(data, dtype=">u2")` reads the byte pairs as unsigned 16-bit values with the first byte as the high byte. For Wahab, the plaintext blocks are `3130 3938 3237 3101`. For Faisal, they are `3130 3735 3037 3501`.
+`np.frombuffer(data, dtype=">u2")` reads those bytes as two 16-bit values, most significant first. Wahab becomes `0010 C21F`; Faisal becomes `0010 6783`. Recombining the two blocks recovers the original integer. This helper accepts the unsigned numbers that fit in four bytes; it is scoped to the IDs in this assignment.
 
-The ID helper is deliberately scoped to the seven-digit IDs used in this assignment; it is not a general message/padding API.
+At the user's request on 23 November, this numeric representation replaced the earlier ASCII representation. The current code, worked trace, ID ciphertexts and bit tests were recalculated together. The handout specifies the IDs and 16-bit blocks but does not prescribe their binary formatting.
 
-The handout introduces CBC, so we use `C_i = E_K(P_i XOR C_(i-1))`, with the IV as `C_0`. The IV is `0000` for this reproducible demonstration. Both IDs begin with `10`, so the reused demonstration key and IV yield the same first ciphertext block. This illustrates the pattern leakage from IV reuse.
+The handout introduces CBC, so we use `C_i = E_K(P_i XOR C_(i-1))`, with the IV as `C_0`. The IV is `0000` for this repeatable demonstration. Both numeric IDs have the first block `0010`, so the reused key and IV yield the same first ciphertext block. Their second blocks differ. This illustrates the pattern leakage from IV reuse.
 
 ## One-bit tests
 

@@ -1,6 +1,6 @@
 # Presentation slides and speaking notes
 
-This is a text copy of the nine-slide presentation. The editable PowerPoint is [here](Symmetric_Algorithm_Presentation.pptx). Slide text and tables come from the exported deck; speaking notes come from its current saved presentation.
+This is a text copy of the nine-slide presentation, updated for numeric ID input. The editable PowerPoint is [here](Symmetric_Algorithm_Presentation.pptx).
 
 ## Slide 1
 
@@ -89,14 +89,14 @@ Each S-box contains all 256 byte values once.
 | --- | --- | --- |
 | Left box | 48361 mod 10 | S1 |
 | Right box | 38717 mod 10 | S7 |
-| Left byte 31 | S1, row 3, column 1 | 63 |
-| Right byte 30 | S7, row 3, column 0 | 09 |
+| Left byte 00 | S1, row 0, column 0 | 9D |
+| Right byte 10 | S7, row 1, column 0 | D4 |
 
 BCE9 = 48361. Reversing all 16 bits gives 38717.
 
 Speaking notes:
 
-Wahab: We label the S-boxes S0 to S9 so the names match Python indices. Convert the subkey normally and take mod 10 for the left side. Reverse all 16 key bits and take mod 10 for the right side. Leading zeros are included. For BCE9 this selects S1 and S7. The input block 3130 splits into 31 and 30. The first hex digit chooses the row and the second chooses the column. Their lookups give 63 and 09. An inverse table undoes a lookup: inverse S1 maps 63 back to 31. The formula may select the same box twice for some keys; we follow the two required mod 10 calculations.
+Wahab: We label the S-boxes S0 to S9 to match Python indices. The normal subkey mod 10 selects the left table; its 16-bit reversal mod 10 selects the right. BCE9 selects S1 and S7. Our first numeric ID block is 0010, split into bytes 00 and 10. The high hex digit is the row and the low hex digit is the column. These lookups give 9D and D4, making 9DD4. Inverse S1 maps 9D back to 00. The required formulas can select the same table twice for some keys.
 
 ## Slide 5
 
@@ -104,22 +104,22 @@ Slide content:
 
 Worked example
 
-Plaintext 3130 (ASCII “10”). Key 2D55. All values are hexadecimal.
+Plaintext 0010, the first numeric ID block. Key 2D55. Values are hexadecimal.
 
 | Round | Input | Substitute | Permute | Key | Output |
 | --- | --- | --- | --- | --- | --- |
-| 1 | 3130 | 6309 | 5542 | BCE9 | E9AB |
-| 2 | E9AB | FB6D | 7FD5 | A34A | DC9F |
-| 3 | DC9F | 315D | 845F | 2E64 | AA3B |
-| 4 | AA3B | 11E6 | 6788 | C6A2 | A12A |
+| 1 | 0010 | 9DD4 | EAB8 | BCE9 | 5651 |
+| 2 | 5651 | 514B | 41D3 | A34A | E299 |
+| 3 | E299 | 8A45 | 610B | 2E64 | 4F6F |
+| 4 | 4F6F | 3173 | CE8C | C6A2 | 082E |
 
-Round 1: 5542 XOR BCE9 = E9AB
+Round 1: EAB8 XOR BCE9 = 5651
 
-Final ciphertext A12A. Decryption returns 3130.
+Final ciphertext 082E. Decryption returns 0010.
 
 Speaking notes:
 
-Wahab: This table is the full four-round trace. In round 1, substitution gives 6309. Pattern 1 reads its bits in the order 6, 8, 1, 2 and so on, giving 5542. XOR with BCE9 gives E9AB. Feed that into round 2, then repeat. The final output is A12A. To decrypt, start at round 4: XOR its key, undo the permutation, then use inverse S-boxes. This restores 3130. The report shows the binary XOR and all eight S-box lookups. I will now hand over to Faisal for the program and results.
+Wahab: This table traces all four rounds for 0010, the first block of either numeric ID. In round 1, the S-boxes give 9DD4. Pattern 1 reads bit positions 6, 8, 1, 2 and so on, giving EAB8. XOR with BCE9 gives 5651. Feed that result into round 2 and repeat with the next pattern and key. The final ciphertext is 082E. The optional decryption check restores 0010 by reversing the round operations. The report includes all eight S-box lookups and a binary XOR calculation. I will hand over to Faisal for the program and results.
 
 ## Slide 6
 
@@ -137,7 +137,7 @@ Our wrapper calls S-AES twice. The remaining code connects the round steps.
 
 Speaking notes:
 
-Faisal: Our project-specific file is symmetric_cipher.py. The other Python file, saes.py, is Mayank Jain's downloaded module, unchanged and supplied with its MIT license. We use its key-expansion method, rather than its encryption method. NumPy creates S-boxes, builds inverse tables and reads paired ID bytes into 16-bit blocks. In frombuffer, >u2 means a two-byte unsigned number with the most significant byte first. BitVector performs permutation, inverse permutation and bit reversal. Our code joins these library operations into the required four rounds and handles CBC and tests. Sources: https://github.com/mayank-02/simplified-aes ; https://numpy.org/doc/stable/reference/generated/numpy.frombuffer.html ; https://engineering.purdue.edu/kak/dist/BitVector-3.5.0.html
+Faisal: symmetric_cipher.py contains our project logic. saes.py is Mayank Jain's downloaded module, unchanged and supplied with its MIT license. We use its key-expansion methods. NumPy creates S-boxes and inverse tables, and frombuffer reads two-byte numbers. The Python integer method student_id.to_bytes(4, "big") stores the whole ID in four bytes, most significant first. Leading zeros fill 32 bits. BitVector handles permutation and bit reversal. Our code connects these operations into four rounds, CBC and tests. Sources: https://github.com/mayank-02/simplified-aes ; https://docs.python.org/3/library/stdtypes.html#int.to_bytes ; https://numpy.org/doc/stable/reference/generated/numpy.frombuffer.html ; https://engineering.purdue.edu/kak/dist/BitVector-3.5.0.html
 
 ## Slide 7
 
@@ -147,16 +147,16 @@ Encrypting both student IDs
 
 | Student | ID | CBC ciphertext |
 | --- | --- | --- |
-| Wahab | 1098271 | A12A 8120 54BF 1711 |
-| Faisal | 1075075 | A12A 41E4 6DDE AC05 |
+| Wahab | 1098271 | 082E 41B9 |
+| Faisal | 1075075 | 082E 0DB4 |
 
-ASCII encoding keeps all seven digits. Two bytes form each block.
+Each numeric ID fills two 16-bit blocks, with leading zeros.
 
-One padding byte 01. CBC uses demonstration IV 0000.
+Store the number in four bytes. CBC demonstration IV: 0000.
 
 Speaking notes:
 
-Faisal: An ID is longer than one 16-bit block. We keep the entire ID as ASCII text and take two characters at a time. Wahab becomes blocks 3130, 3938, 3237 and 3101. Faisal becomes 3130, 3735, 3037 and 3501. The final 01 is one padding byte. CBC XORs each plaintext block with the preceding ciphertext before encryption. The first block uses IV 0000. Both IDs start with 10, so using the same demonstration key and IV gives the same first ciphertext block. Later blocks differ. The fixed IV makes this demonstration repeatable and exposes why repeated IVs leak patterns. We would not reuse it for real data protection.
+Faisal: The inputs are integers 1098271 and 1075075. Each needs 21 bits. We store each in four bytes and add leading zero bits to fill 32 bits; this preserves the numeric value. Wahab is hexadecimal 0010C21F, giving blocks 0010 and C21F. Faisal is 00106783, giving 0010 and 6783. There is no ASCII conversion and no extra padding byte. CBC XORs each plaintext block with the preceding ciphertext before its four rounds. The first block uses IV 0000. Both IDs have first block 0010, so the same demonstration key and IV produce first ciphertext 082E. The second ciphertexts differ. The fixed IV is for a repeatable example and exposes repeated-prefix patterns.
 
 ## Slide 8
 
@@ -166,9 +166,9 @@ One-bit change tests
 
 | Test | Plaintext | Key | Ciphertext | Changed bits |
 | --- | --- | --- | --- | --- |
-| Original | 3130 | 2D55 | A12A | 0 / 16 |
-| Plaintext bit 0 | 3131 | 2D55 | 899C | 7 / 16 |
-| Key bit 0 | 3130 | 2D54 | F0F7 | 9 / 16 |
+| Original | 0010 | 2D55 | 082E | 0 / 16 |
+| Plaintext bit 0 | 0011 | 2D55 | 334E | 7 / 16 |
+| Key bit 0 | 0010 | 2D54 | E230 | 9 / 16 |
 
 Plaintext change: 43.75% of output bits change.
 
@@ -176,7 +176,7 @@ Key change: 56.25% of output bits change.
 
 Speaking notes:
 
-Faisal: Bit 0 is the rightmost bit. For diffusion, keep key 2D55 and change plaintext 3130 to 3131. The output changes from A12A to 899C. XORing the ciphertexts gives 28B6, with 7 set bits. For key sensitivity, keep plaintext 3130 and change key 2D55 to 2D54. The output is F0F7, 9 bits different from the original. The two percentages are 43.75 and 56.25. These tests use the raw block cipher, so CBC does not affect the measurements. They show the effect for these examples and do not establish security.
+Faisal: Bit 0 is the rightmost bit. Keep key 2D55 and change plaintext 0010 to 0011. The output changes from 082E to 334E. Their XOR is 3B60, containing 7 set bits. Next, keep plaintext 0010 and change key 2D55 to 2D54. The ciphertext becomes E230; its XOR with the original is EA1E, with 9 set bits. The percentages are 43.75% and 56.25%. These tests use the raw block cipher, so CBC does not influence the measurement. They are examples, not proof of security.
 
 ## Slide 9
 
@@ -192,4 +192,4 @@ Only 65,536 possible keys. This is a classroom cipher.
 
 Speaking notes:
 
-Faisal: Run python symmetric_cipher.py in the project folder. The output shows the four round keys, ciphertext 0xa12a, decrypted 0x3130, both encrypted IDs, then 7 and 9 changed output bits for the two one-bit tests. Python's 0x prefix means hexadecimal, so 0xa12a and A12A are the same value. The detailed round trace is in the report. The if __name__ == "__main__" line runs this demonstration only when the file is executed directly. It is separate from the cipher. Keep saes.py beside our program and install the requirements first. Both: answer questions together. The full cipher is the handout's custom design. S-AES supplies only key expansion. We use two calls, with K2 as the second input. The seven-digit IDs need one padding byte 01. CBC handles the complete IDs. The small key and example avalanche results do not establish security.
+Faisal: Run python symmetric_cipher.py in the project folder. The output shows round keys, ciphertext 0x82e, recovered plaintext 0x10, both numeric ID ciphertexts, then 7 and 9 changed bits. Python's 0x prefix means hexadecimal and omits leading zeros: 0x82e is 082E and 0x10 is 0010. We input the full decimal IDs as integers. The built-in to_bytes method stores each number in four bytes and frombuffer splits those bytes into two 16-bit blocks. CBC chains those blocks. The detailed trace is in the report. Keep saes.py beside our program and install the requirements first. Both students answer questions. The cipher follows the handout. S-AES supplies only key expansion through two calls, with K2 fed into the second call. The small key and two avalanche examples do not establish security.

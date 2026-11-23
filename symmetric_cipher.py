@@ -62,8 +62,8 @@ def decrypt_block(block, key):
 
 
 def encrypt_id(student_id, key, iv=0):
-    """Encrypt the seven-digit IDs used in this project."""
-    data = student_id.encode("ascii") + b"\x01"  # Seven digits need one pad byte.
+    """Encrypt a numeric student ID as two 16-bit blocks."""
+    data = student_id.to_bytes(4, "big")  # Keep the whole number; pad on the left.
     ciphertext = []
     previous = iv
     for block in np.frombuffer(data, dtype=">u2"):  # Read pairs of bytes.
@@ -73,13 +73,13 @@ def encrypt_id(student_id, key, iv=0):
 
 
 if __name__ == "__main__":
-    key, plaintext = 0x2D55, 0x3130  # Plaintext is ASCII "10".
+    key, plaintext = 0x2D55, 0x0010  # First 16-bit block of either numeric ID.
     original = encrypt_block(plaintext, key)
     print("Round keys:", [hex(k) for k in expand_key(key)])
     print("Ciphertext:", hex(original))
     print("Decrypted:", hex(decrypt_block(original, key)))
 
-    for student_id in ["1098271", "1075075"]:
+    for student_id in [1098271, 1075075]:
         print(student_id, [hex(c) for c in encrypt_id(student_id, key)])
 
     for label, p, k in [("Plaintext bit 0", plaintext ^ 1, key), ("Key bit 0", plaintext, key ^ 1)]:

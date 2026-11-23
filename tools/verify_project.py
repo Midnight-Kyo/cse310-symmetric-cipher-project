@@ -30,7 +30,7 @@ def reference_encrypt(p, k):
         p = shuffled ^ subkey
     return p
 
-assert c.expand_key(0x2D55)[:2] == [0xBCE9, 0xA34A]  # published S-AES example
+assert c.expand_key(0x2D55)[:2] == [0xBCE9, 0xA34A]  # Project demonstration key.
 assert c.box_indices(3) == (3, 2)  # handout example: reversed 3 = 49152
 for box, inv in zip(c.SBOXES, c.INVERSES):
     assert sorted(box.tolist()) == list(range(256))
@@ -57,10 +57,10 @@ for r, subkey in enumerate(c.expand_key(0x2D55)):
         shuffled |= ((replaced >> (15 - source)) & 1) << (15 - destination)
     blocks = shuffled ^ subkey
 assert len(np.unique(blocks)) == 65536
-for p in [0, 1, 0x3130, 0xFFFF]:
+for p in [0, 1, 0x0010, 0xFFFF]:
     assert int(blocks[p]) == c.encrypt_block(p, 0x2D55)
 
-key, plaintext = 0x2D55, 0x3130
+key, plaintext = 0x2D55, 0x0010
 trace, state = [], plaintext
 key_trace = []
 left, right = key >> 8, key & 255
@@ -83,17 +83,21 @@ for r, (subkey, constant) in enumerate(zip(c.expand_key(key), [0x80, 0x30, 0x80,
     state=result
 
 ids=[]
-for name, student_id in [('Wahab Yaseen Dawod','1098271'),('Faisal Saud Al Maamari','1075075')]:
+for name, student_id in [('Wahab Yaseen Dawod',1098271),('Faisal Saud Al Maamari',1075075)]:
     encrypted = c.encrypt_id(student_id, key)
-    data = student_id.encode('ascii') + b'\x01'
+    # Independent numeric block split, rather than the implementation's byte conversion.
+    plain_blocks = [student_id >> 16, student_id & 0xFFFF]
+    assert len(encrypted) == 2
+    assert (plain_blocks[0] << 16) | plain_blocks[1] == student_id
     previous, rows, recovered = 0, [], b''
     for i, output in enumerate(encrypted):
-        p = int.from_bytes(data[i*2:i*2+2], 'big')
+        p = plain_blocks[i]
         assert output == reference_encrypt(p ^ previous, key)
         recovered += (c.decrypt_block(output, key) ^ previous).to_bytes(2,'big')
         rows.append(dict(block=i+1, plaintext=p, previous=previous, input=p ^ previous, ciphertext=output))
         previous=output
-    assert recovered == data
+    assert int.from_bytes(recovered, 'big') == student_id
+    assert len(recovered) == 4
     ids.append(dict(name=name,id=student_id,blocks=rows,ciphertext=encrypted))
 
 base=c.encrypt_block(plaintext,key)
@@ -122,8 +126,8 @@ output = ROOT / 'results/expected_output.txt'
 demo = subprocess.run([sys.executable, str(ROOT / 'symmetric_cipher.py')], cwd=ROOT,
                       capture_output=True, text=True, check=True).stdout
 if args.write_results:
-    record.write_text(json.dumps(summary, indent=2) + '\n')
-    output.write_text(demo)
+    record.write_text(json.dumps(summary, indent=2) + '\n', encoding='utf-8', newline='\n')
+    output.write_text(demo, encoding='utf-8', newline='\n')
     print('Regenerated results/results.json and results/expected_output.txt.')
 else:
     assert summary == json.loads(record.read_text()), 'Recorded results differ from this source/runtime.'

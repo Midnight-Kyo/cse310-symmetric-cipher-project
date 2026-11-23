@@ -41,7 +41,9 @@ NumPy 2.3.5 and BitVector 3.5.0 are the installed dependencies. The S-AES module
 
 ## Current results
 
-With plaintext `3130` (ASCII `10`) and key `2D55`, the round keys are:
+The IDs are entered as whole numbers. Four bytes hold each number, with leading zeros to fill two 16-bit blocks. Wahab's blocks are `0010 C21F`; Faisal's are `0010 6783`. There is no ASCII conversion.
+
+With plaintext `0010` and key `2D55`, the round keys are:
 
 ```text
 BCE9  A34A  2E64  C6A2
@@ -49,18 +51,18 @@ BCE9  A34A  2E64  C6A2
 
 | Example | Result |
 | --- | --- |
-| Encrypt block `3130` | `A12A` |
-| Decrypt block `A12A` | `3130` |
-| Encrypt ID `1098271` | `A12A 8120 54BF 1711` |
-| Encrypt ID `1075075` | `A12A 41E4 6DDE AC05` |
-| Flip plaintext bit 0 | `899C`; 7/16 output bits change, or 43.75%. |
-| Flip key bit 0 | `F0F7`; 9/16 output bits change, or 56.25%. |
+| Encrypt block `0010` | `082E` |
+| Decrypt block `082E` | `0010` |
+| Encrypt ID `1098271` | `082E 41B9` |
+| Encrypt ID `1075075` | `082E 0DB4` |
+| Flip plaintext bit 0 | `334E`; 7/16 output bits change, or 43.75%. |
+| Flip key bit 0 | `E230`; 9/16 output bits change, or 56.25%. |
 
 ## Important design choice
 
 We call the two-round S-AES key expansion twice. The second call uses the last key from the first call. Each call restarts its constants, so the sequence is **80, 30, 80, 30**. This is our documented adaptation to the handout's four-key requirement. Instructor confirmation of this particular adaptation has not been recorded.
 
-The original rubric DOCX is no longer available at its earlier Downloads path. The repository contains a structured transcription from the handout reviewed during the work, including its original example S-box images. It is labeled as a transcription, rather than presented as the original DOCX.
+The original rubric DOCX was unavailable when the repository was first published; it was supplied again on 23 November. The repository contains a structured transcription from the handout reviewed during the work, including its original example S-box images. It is labeled as a transcription, rather than presented as the original DOCX.
 
 The project code and materials were prepared with OpenAI Codex assistance. The downloaded `saes.py` has separate authorship and its original MIT license. See [sources and credits](docs/THIRD_PARTY.md).
 
