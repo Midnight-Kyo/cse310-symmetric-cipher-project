@@ -1,0 +1,132 @@
+{
+  "project": "CSE 310 A New Symmetric Algorithm",
+  "snapshot_date": "2026-11-23",
+  "names_and_ids": "Original names and IDs retained at the user's explicit request.",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 85,
+      "sha256": "c382c7715dffb83b3ec337638f3942b4779cffa698ef3e4ad86dae9c61457c89"
+    },
+    {
+      "path": ".github/workflows/verify.yml",
+      "bytes": 695,
+      "sha256": "9e48a12f2fcfd6537f752b39a8a9d458a5e977e501234f69e78981694b1ec0a8"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 86,
+      "sha256": "bf329a217e00f9252ad1e4e903edcd0d39106c6000d5a3bce39d272e65851f4f"
+    },
+    {
+      "path": "docs/CODE_WALKTHROUGH.md",
+      "bytes": 6666,
+      "sha256": "8d7a8cc2e8fd0605dd27cf9ff198aff526c267e80ef3b1f8bc8c2f13bf4830b4"
+    },
+    {
+      "path": "docs/DESIGN_DECISIONS.md",
+      "bytes": 6235,
+      "sha256": "711854c7012f879dea79f6e6e330bb6237290f6555e1c48da882ec8d3c30dffb"
+    },
+    {
+      "path": "docs/saes_provenance.json",
+      "bytes": 205,
+      "sha256": "218fc9c9babc3d6bf4ae304d6cdd19d3d4104fe134e4a3eb102255b0ee0bdb33"
+    },
+    {
+      "path": "docs/STATUS.md",
+      "bytes": 3725,
+      "sha256": "9f8f37b1e5542414054e0fba39a1b439a6af69d528dd712e684c4e37f4d23372"
+    },
+    {
+      "path": "docs/THIRD_PARTY.md",
+      "bytes": 2600,
+      "sha256": "0aca002368dce31b03a622cd110ac403f01d3c37c6675eee9ad47b0e346e1726"
+    },
+    {
+      "path": "presentation/SLIDES_AND_NOTES.md",
+      "bytes": 8975,
+      "sha256": "d956291cad9da5e7cc60c7ee062731a0b583ff1b44927dbb9eb20fd7ace4cafd"
+    },
+    {
+      "path": "presentation/Symmetric_Algorithm_Presentation.pptx",
+      "bytes": 47951,
+      "sha256": "3bf70a41d40d5bb73129c885ac84eeaac9266977a27530c976f86bdf09caf0ce"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4268,
+      "sha256": "46e6286d5104b2ff6c8c867b25ab7d9baa0e029461000463eb78ae1ed5c7e6d2"
+    },
+    {
+      "path": "report/flowchart.png",
+      "bytes": 107409,
+      "sha256": "8796ebf4a4bef9b1e79330d4ae6d2f15c47c960f0654282af380db9c21c1e316"
+    },
+    {
+      "path": "report/Symmetric_Algorithm_Report.docx",
+      "bytes": 143359,
+      "sha256": "c463e0b124c17f93ead1dfcd0b752433ae13c25ca12a36100ba0babd1818e69d"
+    },
+    {
+      "path": "report/Symmetric_Algorithm_Report.pdf",
+      "bytes": 482686,
+      "sha256": "2142dfecbeeec5562fec24783a3b149866c0222004d378505e69fd54ece16539"
+    },
+    {
+      "path": "requirements/assets/handout_inverse_sbox.png",
+      "bytes": 36456,
+      "sha256": "419553f99ee2e35c338f11079131b07f0b06b2f0ac9ea30e32c98d60458f1bdd"
+    },
+    {
+      "path": "requirements/assets/handout_sbox.png",
+      "bytes": 37506,
+      "sha256": "1c66d568b4ed4cd1a4ad983c42bf42fabcf3a4af7c0e6ee529ad2b5c009388cd"
+    },
+    {
+      "path": "requirements/ASSIGNMENT_AND_RUBRIC.md",
+      "bytes": 6746,
+      "sha256": "ee50e13b286c35b6adc08f7b31abd0f8d1e18a6d761e60359e2e982e5de168a8"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 30,
+      "sha256": "8bd6f66edb9fe490db05268179c293b48db666625d7cb16127ef07a64f6b5c88"
+    },
+    {
+      "path": "results/expected_output.txt",
+      "bytes": 275,
+      "sha256": "208cf094a6f0896e909dedd464a41177ce7299eda63ce2787cb4b0c324ca3701"
+    },
+    {
+      "path": "results/results.json",
+      "bytes": 5094,
+      "sha256": "b555df944db5e72c4ddea368a31b13a1b4b0c1b958653111ce29d29db236fb55"
+    },
+    {
+      "path": "saes.py",
+      "bytes": 6998,
+      "sha256": "33d6da8d52454816bfa9da6d4c6594ac319739e0cb6844c30d277a4e1c3dfc3e"
+    },
+    {
+      "path": "SAES_LICENSE.txt",
+      "bytes": 1068,
+      "sha256": "9f545266a9eb456aa6bfff3f4eeb0f5ae8fcd7076aa6045a2ba8d7dcec6a94de"
+    },
+    {
+      "path": "submission/Symmetric_Project_Files.zip",
+      "bytes": 145384,
+      "sha256": "d2f9e397f1749384e076f882acc21b961d4bb033f0d03e12a57c119fc30e21ee"
+    },
+    {
+      "path": "symmetric_cipher.py",
+      "bytes": 3314,
+      "sha256": "cf4d44ef670373cfe6a953f6921955e2c2c4d9b01cac68fc44ac3184ab488745"
+    },
+    {
+      "path": "tools/verify_project.py",
+      "bytes": 7437,
+      "sha256": "177976621b3c7725fa1620c727b1da9bfbaf0dc579bbb9c3a7d31a22afb75b17"
+    }
+  ]
+}
