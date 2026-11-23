@@ -35,8 +35,8 @@
     },
     {
       "path": "docs/STATUS.md",
-      "bytes": 3955,
-      "sha256": "a30b1474a59d541ad441440aa94078d4ae419c84fde0248f35426cab6f92ae14"
+      "bytes": 3993,
+      "sha256": "d465d977b8082bafa23a88fe6021cffc43972362bd0d9863c93cd29f89fd398c"
     },
     {
       "path": "docs/THIRD_PARTY.md",
@@ -55,8 +55,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 4445,
-      "sha256": "27da740b892368b336cee5519136a16a771eca9d7ba0be0e86d6801b6eeb65aa"
+      "bytes": 4429,
+      "sha256": "12e8dcc70cd234b808931b0fdd98ca692a1a652df19e062c5aa96ce3c1502376"
     },
     {
       "path": "report/flowchart.png",
@@ -65,13 +65,13 @@
     },
     {
       "path": "report/Symmetric_Algorithm_Report.docx",
-      "bytes": 141700,
-      "sha256": "697111e155e09083bd5f0ab3d654945eb1d10d6ce4ace72c9ad66a06000bc9d9"
+      "bytes": 141516,
+      "sha256": "ebbb45de1d7b77d29e408c36d05da915e5faa74e56eb9b36f89e4e8100405a51"
     },
     {
       "path": "report/Symmetric_Algorithm_Report.pdf",
-      "bytes": 474427,
-      "sha256": "e7cffd839c4b20aff0981f173b6230fe62d0772b36d7668e4eb344a70641c351"
+      "bytes": 473984,
+      "sha256": "1496bc088edc1ee110188525361ca3178e59ba9b7f34819981cb8ddede42f324"
     },
     {
       "path": "requirements/assets/handout_inverse_sbox.png",
@@ -115,8 +115,8 @@
     },
     {
       "path": "submission/Symmetric_Project_Files.zip",
-      "bytes": 143718,
-      "sha256": "ff480247d6a0cdd8569a19ca357f26ccabc5cbdb3cdf50a8da7940ae14cbd3b0"
+      "bytes": 474974,
+      "sha256": "e931cafff58f2c496080911cb89304dbc0a6e9941665c73bf037b7a5e950d3ae"
     },
     {
       "path": "symmetric_cipher.py",
@@ -125,8 +125,8 @@
     },
     {
       "path": "tools/verify_project.py",
-      "bytes": 7503,
-      "sha256": "7bf1ef39bd42075565fe64d076c86d69833fe01ba1336a2c1695a052322e1f2b"
+      "bytes": 7701,
+      "sha256": "313762465b31ab6840ca50d9fc11edbedfbb94d3a71ce192c45189690ed4862f"
     }
   ]
 }

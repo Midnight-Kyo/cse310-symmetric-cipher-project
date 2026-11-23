@@ -32,13 +32,14 @@ The PowerPoint archive has nine slides, six native tables and speaker notes. It 
 
 The supplied [ZIP](../submission/Symmetric_Project_Files.zip) contains exactly:
 
-1. `Symmetric_Algorithm_Report.docx`: the written evidence for the flowchart, pseudocode, trace and tests.
-2. `symmetric_cipher.py`: the project program required by the rubric.
-3. `requirements.txt`: the two dependency versions needed to run it.
-4. `saes.py`: the third-party module imported by the program.
-5. `SAES_LICENSE.txt`: the original license notice supplied with that module.
+1. `Symmetric_Algorithm_Report.pdf`: the flowchart, pseudocode, manual trace, ID results and tests.
+2. `Symmetric_Algorithm_Presentation.pptx`: the prepared slides and speaker notes.
+3. `symmetric_cipher.py`: the project program.
+4. `requirements.txt`: the two dependency versions needed to run it.
+5. `saes.py`: the S-AES library imported by the program.
+6. `SAES_LICENSE.txt`: the original notice accompanying that library.
 
-The [presentation](../presentation/Symmetric_Algorithm_Presentation.pptx) is separate and is also required by the rubric. The report PDF is a readable copy of the same report. The remaining repository documentation and verification files explain and check the work; they are not additional university submission requirements.
+The rubric requires a presentation without specifying PowerPoint. The ZIP includes the prepared slides at the user's request. The repository also keeps an editable Word source for the PDF. Its other documentation and verification files explain and check the work; they are not additional university submission requirements.
 
 Historical scratch folders, installed dependency trees, unrelated Lab 1 work and temporary QA files are outside this repository. The current deliverables and the meaningful design history are preserved here.
 

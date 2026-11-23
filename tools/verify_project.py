@@ -129,12 +129,18 @@ else:
     assert summary == json.loads(record.read_text()), 'Recorded results differ from this source/runtime.'
     assert demo.splitlines() == output.read_text().splitlines(), 'Console output differs from the archive.'
     from zipfile import ZipFile
-    files = ['Symmetric_Algorithm_Report.docx', 'symmetric_cipher.py', 'requirements.txt', 'saes.py', 'SAES_LICENSE.txt']
+    files = ['Symmetric_Algorithm_Report.pdf', 'Symmetric_Algorithm_Presentation.pptx',
+             'symmetric_cipher.py', 'requirements.txt', 'saes.py', 'SAES_LICENSE.txt']
     with ZipFile(ROOT / 'submission/Symmetric_Project_Files.zip') as archive:
         assert archive.namelist() == files
         assert archive.testzip() is None
         for name in files:
-            path = ROOT / 'report' / name if name.endswith('.docx') else ROOT / name
+            if name.endswith('.pdf'):
+                path = ROOT / 'report' / name
+            elif name.endswith('.pptx'):
+                path = ROOT / 'presentation' / name
+            else:
+                path = ROOT / name
             assert archive.read(name) == path.read_bytes(), 'Student package is out of sync: ' + name
     print('Verified recorded results, console output, third-party source and student package.')
 print('PASS: 10 S-boxes, 2,560 inverse entries, 4 permutations, 512 independent reference cases,')

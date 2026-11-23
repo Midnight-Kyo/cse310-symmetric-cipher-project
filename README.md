@@ -36,7 +36,7 @@ NumPy 2.3.5 and BitVector 3.5.0 are the installed dependencies. The S-AES module
 | [Slides and speaking notes](presentation/SLIDES_AND_NOTES.md) | A readable text copy of the presentation for GitHub. |
 | [Expected output](results/expected_output.txt) / [full results](results/results.json) | Reproducible example outputs and intermediate values. |
 | [Verification tool](tools/verify_project.py) | Independent checks and regeneration of the result records. |
-| [Student package](submission/Symmetric_Project_Files.zip) | The existing report/code package; the presentation is stored separately above. |
+| [Student package](submission/Symmetric_Project_Files.zip) | The PDF report, PowerPoint and program files needed to run it. |
 | [Sources and credits](docs/THIRD_PARTY.md) | Records external code, dependency versions, authorship and license scope. |
 
 ## Current results
