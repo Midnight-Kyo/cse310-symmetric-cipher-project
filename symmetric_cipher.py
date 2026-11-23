@@ -39,8 +39,14 @@ def box_indices(subkey):
 
 
 def substitute(block, boxes, left_index, right_index):
-    left = int(boxes[left_index][block >> 8])
-    right = int(boxes[right_index][block & 255])
+    left_byte = block >> 8
+    left_box = boxes[left_index]
+    left = int(left_box[left_byte])
+
+    right_byte = block & 255
+    right_box = boxes[right_index]
+    right = int(right_box[right_byte])
+
     return (left << 8) | right
 
 

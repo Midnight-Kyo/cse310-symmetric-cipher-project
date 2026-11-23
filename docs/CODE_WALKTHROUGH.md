@@ -63,12 +63,18 @@ The three assignments make each operation visible: create a 16-bit BitVector obj
 
 ```python
 def substitute(block, boxes, left_index, right_index):
-    left = int(boxes[left_index][block >> 8])
-    right = int(boxes[right_index][block & 255])
+    left_byte = block >> 8
+    left_box = boxes[left_index]
+    left = int(left_box[left_byte])
+
+    right_byte = block & 255
+    right_box = boxes[right_index]
+    right = int(right_box[right_byte])
+
     return (left << 8) | right
 ```
 
-`block >> 8` gets the left byte. `block & 255` gets the right byte. Each byte is replaced using its selected S-box, then the final line joins the replacement bytes. In the first round, `0010` splits into `00` and `10`; S1 and S7 give `9D` and `D4`, making `9DD4`.
+`block >> 8` extracts the left byte into `left_byte`. `boxes[left_index]` selects its table and stores it in `left_box`. The lookup `left_box[left_byte]` supplies the replacement, converted into a regular integer and stored in `left`. The right-side assignments follow the same steps, using `block & 255` to extract the right byte. The final line joins the two replacements. In the first round, `0010` splits into `00` and `10`; S1 and S7 give `9D` and `D4`, making `9DD4`.
 
 ## Encrypting one block
 
