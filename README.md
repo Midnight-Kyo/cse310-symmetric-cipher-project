@@ -31,7 +31,7 @@ NumPy 2.3.5 and BitVector 3.5.0 are the installed dependencies. The S-AES module
 | [Code walkthrough](docs/CODE_WALKTHROUGH.md) | Explains each function in simple terms with code blocks. |
 | [Project program](symmetric_cipher.py) | The small project-specific implementation and demo. |
 | [Downloaded S-AES module](saes.py) | Mayank Jain's unchanged third-party implementation; used for key expansion. |
-| [Word report](report/Symmetric_Algorithm_Report.docx) / [PDF report](report/Symmetric_Algorithm_Report.pdf) | The six-page report, including flowchart, pseudocode, manual trace and tests. |
+| [Word report](report/Symmetric_Algorithm_Report.docx) / [PDF report](report/Symmetric_Algorithm_Report.pdf) | The five-page report, including flowchart, pseudocode, manual trace and tests. |
 | [PowerPoint presentation](presentation/Symmetric_Algorithm_Presentation.pptx) | Nine editable slides with speaker notes. |
 | [Slides and speaking notes](presentation/SLIDES_AND_NOTES.md) | A readable text copy of the presentation for GitHub. |
 | [Expected output](results/expected_output.txt) / [full results](results/results.json) | Reproducible example outputs and intermediate values. |

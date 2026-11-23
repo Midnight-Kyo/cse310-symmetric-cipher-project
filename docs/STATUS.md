@@ -7,7 +7,7 @@ Repository prepared on 23 November 2026. The project was first prepared on 17 No
 - A four-round encryption implementation and CBC handling for both numeric student IDs, using two blocks each.
 - Ten fixed 8-bit S-boxes and all ten inverse tables.
 - Two calls to the downloaded S-AES key-expansion module for four round keys.
-- A six-page Word report and a matching PDF with the flowchart, pseudocode, full four-round worked example, ID results and one-bit tests.
+- A five-page Word report and a matching PDF with the flowchart, pseudocode, full four-round worked example, ID results and one-bit tests.
 - Nine presentation slides, speaker notes and a plain-text copy of the slides.
 - A code walkthrough, decision record, source attribution and rubric map.
 - Expected console output, full result records and a portable verification tool.

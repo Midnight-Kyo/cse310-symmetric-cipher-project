@@ -57,11 +57,11 @@ These are the handout's example figures, labeled S-box and inverse S-box. The pr
 
 | Requirement | Marks | Current evidence |
 | --- | ---: | --- |
-| Design a flowchart covering the algorithm. | 1 | Report Section 1, page 2; [flowchart image](../report/flowchart.png). |
-| Write pseudocode for the proposed algorithm. | 2 | Report Section 2, page 3. |
-| Manually trace a 16-bit plaintext and 16-bit key. | 2 | Report Section 3, page 4; key expansion also appears on page 3. |
-| Develop encryption code in any language; generate ciphertext automatically. Plaintext is the ADU ID of each group member. | 4 | [symmetric_cipher.py](../symmetric_cipher.py); report Section 4, page 5; both IDs in [results](../results/results.json). |
-| Test diffusion and confusion by changing one plaintext bit and one key bit. | 2 | Report Section 5, page 6; the demo and result records contain both tests. |
+| Design a flowchart covering the algorithm. | 1 | Report Section 1, page 1; [flowchart image](../report/flowchart.png). |
+| Write pseudocode for the proposed algorithm. | 2 | Report Section 2, page 2. |
+| Manually trace a 16-bit plaintext and 16-bit key. | 2 | Report Section 3, page 3; key expansion also appears on page 2. |
+| Develop encryption code in any language; generate ciphertext automatically. Plaintext is the ADU ID of each group member. | 4 | [symmetric_cipher.py](../symmetric_cipher.py); report Section 4, page 4; both IDs in [results](../results/results.json). |
+| Test diffusion and confusion by changing one plaintext bit and one key bit. | 2 | Report Section 5, page 5; the demo and result records contain both tests. |
 | Presentation. | 4 | Nine-slide [PowerPoint](../presentation/Symmetric_Algorithm_Presentation.pptx) and [speaker notes](../presentation/SLIDES_AND_NOTES.md). Actual delivery remains a student task. |
 | **Total** | **15** | |
 
