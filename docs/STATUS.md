@@ -1,10 +1,10 @@
 # Current project status
 
-Repository prepared on 23 November 2026. The project was first prepared on 17 November. On 23 November, numeric ID input replaced the previous text representation, and the report, slides and results were updated together. The four-round block algorithm and key schedule stay the same.
+Repository prepared on 23 November 2026. The project was first prepared on 17 November. On 23 November, numeric ID input replaced the previous text representation, and the report, slides and results were updated together. The four-round block algorithm and key schedule stay the same. The optional decryption function was subsequently removed at the user's request; the required inverse S-box generation remains.
 
 ## Completed
 
-- A four-round encryption implementation, its inverse and CBC handling for both numeric student IDs, using two blocks each.
+- A four-round encryption implementation and CBC handling for both numeric student IDs, using two blocks each.
 - Ten fixed 8-bit S-boxes and all ten inverse tables.
 - Two calls to the downloaded S-AES key-expansion module for four round keys.
 - A six-page Word report and a matching PDF with the flowchart, pseudocode, full four-round worked example, ID results and one-bit tests.
@@ -14,7 +14,7 @@ Repository prepared on 23 November 2026. The project was first prepared on 17 No
 
 ## Verification
 
-The verification tool checks all ten S-boxes and 2,560 inverse entries; all four permutation patterns; 512 deterministic plaintext/key pairs against an independent reference implementation; encryption/decryption recovery and reconstruction of the complete numeric IDs; all 65,536 plaintext outputs under the example key for uniqueness; both complete ID results; and both one-bit tests.
+The verification tool checks all ten S-boxes and 2,560 inverse entries; all four permutation patterns; 512 deterministic plaintext/key pairs against an independent reference implementation; numeric ID block construction; all 65,536 plaintext outputs under the example key for uniqueness; both complete ID results; and both one-bit tests.
 
 It also checks the recorded results, the project-source checksum, the unchanged third-party source and the submission archive. The GitHub Actions workflow runs these checks on Python 3.12. Its latest run is the public record of the server-side result.
 

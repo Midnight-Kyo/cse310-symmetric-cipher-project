@@ -23,7 +23,7 @@ The main program uses the constructor's key expansion and `state_to_int` convers
 | Dependency | Version | Use | Primary source |
 | --- | --- | --- | --- |
 | NumPy | 2.3.5 | S-box generation, inverse lookup tables, reading byte pairs | [permutation](https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.permutation.html), [argsort](https://numpy.org/doc/stable/reference/generated/numpy.argsort.html), [frombuffer](https://numpy.org/doc/stable/reference/generated/numpy.frombuffer.html) |
-| BitVector | 3.5.0 | Permutation, inverse permutation and bit reversal | [Author's documentation](https://engineering.purdue.edu/kak/dist/BitVector-3.5.0.html) |
+| BitVector | 3.5.0 | Permutation and bit reversal | [Author's documentation](https://engineering.purdue.edu/kak/dist/BitVector-3.5.0.html) |
 
 These packages are installed from `requirements.txt`; their installed files are not copied into the repository. They retain their own licenses.
 

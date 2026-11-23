@@ -97,21 +97,6 @@ def encrypt_block(block, key):
 
 A presentation explanation: “Each round selects two S-boxes, substitutes the bytes, shuffles the bits and XORs the result with its round key. We repeat that four times.”
 
-## Decrypting one block
-
-```python
-def decrypt_block(block, key):
-    keys = expand_key(key)
-    for round_number in range(3, -1, -1):
-        subkey = keys[round_number]
-        a, b = box_indices(subkey)
-        shuffled = BitVector(intVal=block ^ subkey, size=16)
-        block = substitute(int(shuffled.unpermute(PATTERNS[round_number])), INVERSES, a, b)
-    return block
-```
-
-The loop uses positions 3, 2, 1, 0, meaning rounds 4 back to 1. XOR the key again, undo the permutation, then use inverse S-boxes. The result recovers the plaintext.
-
 ## Encrypting a complete ID
 
 ```python
@@ -139,13 +124,13 @@ Block 1: 0010 XOR 0000 = 0010; encrypt to 082E.
 Block 2: C21F XOR 082E = CA31; encrypt to 41B9.
 ```
 
-The returned list contains two encrypted blocks. Decrypting them and recombining the recovered numeric blocks gives the complete original ID.
+The returned list contains the two encrypted blocks. The required inverse S-box tables are generated separately; this program implements encryption only.
 
 ## The demonstration section
 
 `if __name__ == "__main__":` runs the demonstration when this file is executed directly. Importing its functions does not automatically run the demo. This condition contributes nothing to encryption.
 
-The demo chooses key `2D55` and plaintext `0010` (the first numeric ID block), prints the round keys, encrypts and decrypts the example, then encrypts both complete IDs. `hex()` only formats output.
+The demo chooses key `2D55` and plaintext `0010` (the first numeric ID block), prints the round keys, encrypts the example, then encrypts both complete IDs. `hex()` only formats output.
 
 For the tests, `plaintext ^ 1` flips the plaintext's rightmost bit, while `key ^ 1` flips the key's rightmost bit. Each changed case is encrypted separately. The expression below counts differing output positions:
 

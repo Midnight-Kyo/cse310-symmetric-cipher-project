@@ -45,7 +45,6 @@ for _ in range(512):
     assert c.expand_key(k) == reference_keys(k)
     encrypted = c.encrypt_block(p, k)
     assert encrypted == reference_encrypt(p, k)
-    assert c.decrypt_block(encrypted, k) == p
 
 # Exhaustively check that all plaintext blocks map to distinct outputs for the demo key.
 blocks = np.arange(65536, dtype=np.uint32)
@@ -89,15 +88,12 @@ for name, student_id in [('Wahab Yaseen Dawod',1098271),('Faisal Saud Al Maamari
     plain_blocks = [student_id >> 16, student_id & 0xFFFF]
     assert len(encrypted) == 2
     assert (plain_blocks[0] << 16) | plain_blocks[1] == student_id
-    previous, rows, recovered = 0, [], b''
+    previous, rows = 0, []
     for i, output in enumerate(encrypted):
         p = plain_blocks[i]
         assert output == reference_encrypt(p ^ previous, key)
-        recovered += (c.decrypt_block(output, key) ^ previous).to_bytes(2,'big')
         rows.append(dict(block=i+1, plaintext=p, previous=previous, input=p ^ previous, ciphertext=output))
         previous=output
-    assert int.from_bytes(recovered, 'big') == student_id
-    assert len(recovered) == 4
     ids.append(dict(name=name,id=student_id,blocks=rows,ciphertext=encrypted))
 
 base=c.encrypt_block(plaintext,key)

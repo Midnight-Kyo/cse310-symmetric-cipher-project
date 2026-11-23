@@ -43,7 +43,7 @@ The two specified formulas can produce the same index. We do not introduce a rul
 
 The four patterns are copied from the handout. The implemented convention is: the second row lists source positions to read into output positions 1 through 16. Thus pattern 1 begins by reading input positions 6, 8, 1 and 2.
 
-We subtract one to translate the handout's positions into Python's zero-based indices. BitVector's `permute` performs the shuffle; `unpermute` reverses it. This source-position convention is stated in the report because the handout's wording does not fully define the direction.
+We subtract one to translate the handout's positions into Python's zero-based indices. BitVector's `permute` performs the shuffle. This source-position convention is stated in the report because the handout's wording does not fully define the direction.
 
 ## Full student IDs and CBC
 

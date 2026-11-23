@@ -52,7 +52,6 @@ BCE9  A34A  2E64  C6A2
 | Example | Result |
 | --- | --- |
 | Encrypt block `0010` | `082E` |
-| Decrypt block `082E` | `0010` |
 | Encrypt ID `1098271` | `082E 41B9` |
 | Encrypt ID `1075075` | `082E 0DB4` |
 | Flip plaintext bit 0 | `334E`; 7/16 output bits change, or 43.75%. |

@@ -115,11 +115,11 @@ Plaintext 0010, the first numeric ID block. Key 2D55. Values are hexadecimal.
 
 Round 1: EAB8 XOR BCE9 = 5651
 
-Final ciphertext 082E. Decryption returns 0010.
+Final ciphertext 082E.
 
 Speaking notes:
 
-Wahab: This table traces all four rounds for 0010, the first block of either numeric ID. In round 1, the S-boxes give 9DD4. Pattern 1 reads bit positions 6, 8, 1, 2 and so on, giving EAB8. XOR with BCE9 gives 5651. Feed that result into round 2 and repeat with the next pattern and key. The final ciphertext is 082E. The optional decryption check restores 0010 by reversing the round operations. The report includes all eight S-box lookups and a binary XOR calculation. I will hand over to Faisal for the program and results.
+Wahab: This table traces all four rounds for 0010, the first block of either numeric ID. In round 1, the S-boxes give 9DD4. Pattern 1 reads bit positions 6, 8, 1, 2 and so on, giving EAB8. XOR with BCE9 gives 5651. Feed that result into round 2 and repeat with the next pattern and key. The final ciphertext is 082E. The report includes all eight S-box lookups and a binary XOR calculation. I will hand over to Faisal for the program and results.
 
 ## Slide 6
 
@@ -130,7 +130,7 @@ Python libraries
 | Library | Calls used | Purpose |
 | --- | --- | --- |
 | NumPy | permutation(256)<br>argsort(box)<br>frombuffer(data, ">u2") | Create S-boxes and inverses<br>Read 16-bit blocks |
-| BitVector | permute(pattern)<br>unpermute(pattern)<br>reverse() | Shuffle and restore bits<br>Reverse subkey bits |
+| BitVector | permute(pattern)<br>reverse() | Shuffle bits<br>Reverse subkey bits |
 | S-AES module | SimplifiedAES(key) | Generate two round keys |
 
 Our wrapper calls S-AES twice. The remaining code connects the round steps.
@@ -186,10 +186,10 @@ Program demonstration and limits
 
 python symmetric_cipher.py
 
-The output shows round keys, both IDs, decryption and one-bit tests.
+The output shows round keys, both encrypted IDs and one-bit tests.
 
 Only 65,536 possible keys. This is a classroom cipher.
 
 Speaking notes:
 
-Faisal: Run python symmetric_cipher.py in the project folder. The output shows round keys, ciphertext 0x82e, recovered plaintext 0x10, both numeric ID ciphertexts, then 7 and 9 changed bits. Python's 0x prefix means hexadecimal and omits leading zeros: 0x82e is 082E and 0x10 is 0010. We input the full decimal IDs as integers. The built-in to_bytes method stores each number in four bytes and frombuffer splits those bytes into two 16-bit blocks. CBC chains those blocks. The detailed trace is in the report. Keep saes.py beside our program and install the requirements first. Both students answer questions. The cipher follows the handout. S-AES supplies only key expansion through two calls, with K2 fed into the second call. The small key and two avalanche examples do not establish security.
+Faisal: Run python symmetric_cipher.py in the project folder. The output shows round keys, ciphertext 0x82e, both numeric ID ciphertexts, then 7 and 9 changed bits. Python's 0x prefix means hexadecimal and omits leading zeros: 0x82e is 082E. We input the full decimal IDs as integers. The built-in to_bytes method stores each number in four bytes and frombuffer splits those bytes into two 16-bit blocks. CBC chains those blocks. The detailed trace is in the report. Keep saes.py beside our program and install the requirements first. Both students answer questions. The cipher follows the handout. S-AES supplies only key expansion through two calls, with K2 fed into the second call. The small key and two avalanche examples do not establish security.

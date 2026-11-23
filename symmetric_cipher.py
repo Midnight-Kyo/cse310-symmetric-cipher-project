@@ -59,16 +59,6 @@ def encrypt_block(block, key):
     return block
 
 
-def decrypt_block(block, key):
-    keys = expand_key(key)
-    for round_number in range(3, -1, -1):
-        subkey = keys[round_number]
-        a, b = box_indices(subkey)
-        shuffled = BitVector(intVal=block ^ subkey, size=16)
-        block = substitute(int(shuffled.unpermute(PATTERNS[round_number])), INVERSES, a, b)
-    return block
-
-
 def encrypt_id(student_id, key, iv=0):
     """Encrypt a numeric student ID as two 16-bit blocks."""
     data = student_id.to_bytes(4, "big")  # Keep the whole number; pad on the left.
@@ -85,7 +75,6 @@ if __name__ == "__main__":
     original = encrypt_block(plaintext, key)
     print("Round keys:", [hex(k) for k in expand_key(key)])
     print("Ciphertext:", hex(original))
-    print("Decrypted:", hex(decrypt_block(original, key)))
 
     for student_id in [1098271, 1075075]:
         print(student_id, [hex(c) for c in encrypt_id(student_id, key)])
